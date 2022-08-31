@@ -1,0 +1,259 @@
+<html>
+<head>
+	 <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='icon' href="calci.png"/>
+	<title>Calculator</title>
+	<style>
+		body{
+			background-image: linear-gradient(white,rgb(185, 96, 240),white);
+			
+		}
+		.demo{
+			width:auto;
+			height:auto;
+			margin:auto;
+		}
+		
+		
+		.pcls{
+			font-weight: bold;
+			font-size: 45;
+			color: purple;
+			text-align: center;
+			text-shadow: 2px 2px 2px purple;
+		}
+		.outsp{
+			
+			border-radius: 16px;
+			
+		}
+		button{
+			 width: 20vw;
+    height: 10vh;
+    
+			border-radius: 16px;
+			
+			font-size: 35;
+			border:3px solid black;
+			background-color: #dcdcdc;
+			 -moz-transition: all ease 0.5s;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    -o-transition: all ease 0.5s;
+		}
+		.btn2{
+			width: 20vw;
+    height: 10vh;
+			border-radius: 16px;
+			font-weight: bold;
+			font-size: 35;
+			color: black;
+			border:3px solid black;
+			background-color:#f5eb98;
+
+		}
+		.btn2:hover{
+			width: 20vw;
+    height: 10vh;
+			border-radius: 16px;
+			font-weight: bold;
+			font-size: 35;
+			color:white;
+			background-color:rgb(185, 96, 240);
+			box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.9);
+		}
+		@keyframes fadein {
+    0% {
+        opacity: 0%;
+    }
+    100%   {
+        opacity: 100%;
+    }
+  }
+.btn1:hover 
+{
+box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.9);
+background-color: #bbbec4;
+}
+
+		.btn3{
+			width: 20vw;
+    height: 10vh;
+			border-radius: 16px;
+			font-weight: bold;
+			font-size: 35;
+			color:black;
+			border:3px solid black;
+			background-color:#f5eb98;
+			
+		}
+		.btn3:hover{
+			width: 20vw;
+    height: 10vh;
+			border-radius: 16px;
+			font-weight: bold;
+			font-size: 35;
+			background-color: rgb(185, 96, 240);
+			color: white;
+			box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.9);
+		}
+		.inpt{
+			background-color: #dcdcdc;
+			
+			width:92%;
+			font-size: 3rem;
+			margin-top:0.5rem; 
+			margin-bottom: 0.5rem;
+			 padding: 0.5rem 2.5rem;
+			border-radius: 16px;
+			font-weight: bold;
+			
+			text-align: right;
+			border:3px solid black; 
+			position: relative;
+
+
+	</style>
+</head>
+<body style="height:100%;">
+	<div class="demo">
+	<div class="outout">
+
+		<i class="pcls"><center>Calculator</center></i><br>
+	<div class="outsp"><center>
+		<input type="text" name="screen" class="inpt" size="25" id="ans" readonly></center>
+	<center><table cellspacing="9.5">
+		<tr>
+			<td><button class="btn1">(</button></td>
+			<td><button class="btn1">)</button></td>
+			<td><button class="btn2">C</button></td>
+			<td><button class="btn1">%</button></td>
+		</tr>
+		<tr>
+			<td><button class="btn1">1</button></td>
+			<td><button class="btn1">2</button></td>
+			<td><button class="btn1">3</button></td>
+			<td><button class="btn1">+</button></td>
+		</tr>
+		<tr>
+			<td><button class="btn1">4</button></td>
+			<td><button class="btn1">5</button></td>
+			<td><button class="btn1">6</button></td>
+			<td><button class="btn1">-</button></td>
+		</tr>
+		<tr>
+			<td><button class="btn1">7</button></td>
+			<td><button class="btn1">8</button></td>
+			<td><button class="btn1">9</button></td>
+			<td><button class="btn1">x</button></td>
+		</tr>
+		<tr>
+			<td><button class="btn1">0</button></td>
+			<td><button class="btn1">.</button></td>
+			<td><button class="btn1">/</button></td>
+			<td><button class="btn3">=</button></td>
+		</tr>
+	</table></center><br>
+</div>&nbsp;&nbsp;&nbsp;<div class="pcls"></div>
+</div>
+</div>
+</body>
+<script src="https://unpkg.com/scrollreveal"></script>
+<script>
+document.getElementById("ans").readOnly = false; 
+let screen = document.getElementById("ans");
+buttons = document.querySelectorAll("button");
+let screenValue = "";
+for (item of buttons) {
+    item.addEventListener("click", (e) => {
+        buttonText = e.target.innerText;
+        if (buttonText == "x") {
+            buttonText = "*";
+            screenValue += buttonText;
+            screen.value = screenValue;
+        } else if (buttonText == "C") {
+            screenValue = "";
+            screen.value = screenValue;
+        } else if (buttonText == "=") {
+            checkForBracketMulti(); 
+        } else {
+            screenValue += buttonText;
+            screen.value = screenValue;
+        }
+    });
+}
+
+document.addEventListener("keydown", function (event) {
+    console.log(event.which);
+    if (event.shiftKey == 57) {
+        event.key = "(";
+    } else if (event.shiftKey == 48) {
+        event.key = ")";
+    } else if (event.shiftKey == 53) {
+        event.key = "%";
+    }
+    if (event.keyCode == 88) {
+        screenValue += "*";
+        screen.value = screenValue;
+    }
+    if (
+        event.key <= 9 || event.key == "+" || event.key == "-" || event.key == "*" || event.key == "." || event.key == "/" ||event.key == "%" ||event.key == "(" ||
+        event.key == ")"
+    ) {
+        screenValue += event.key;
+        screen.value = screenValue;
+    }
+    if (event.keyCode == 13 || event.keyCode == 187) {
+        checkForBracketMulti(); 
+    } else if (event.keyCode == 46) {
+        screenValue = "";
+        screen.value = screenValue;
+        console.clear();
+    } else if (event.keyCode == 8) {
+        screenValue = screenValue.slice(0, -1);
+        screen.value = screenValue;
+    } else if (event.keyCode == 67) {
+        screenValue = "";
+        screen.value = screenValue;
+        console.clear();
+    } else if (event.keyCode == 82) {
+        location.reload();
+    }
+});
+
+window.onerror = function () {
+    alert("Enter Valid Expression ");
+    screenValue = "";
+    screen.value = screenValue;
+    console.clear();
+};
+
+window.onBracketMultiplication = function () {
+    screenValue = addStr(screen.value, screen.value.indexOf("("), "*");
+    screen.value = eval(screenValue);
+};
+
+function addStr(str, index, stringToAdd) {
+    return (
+        str.substring(0, index) + stringToAdd + str.substring(index, str.length)
+    );
+}
+
+function checkForBracketMulti() {
+    if (
+        screen.value.includes("(") &&
+        !isNaN(screen.value.charAt(screen.value.indexOf("(") - 1))
+    ) {
+        window.onBracketMultiplication();
+        return;
+    } else {
+        screen.value = eval(screenValue);
+    }
+}
+
+
+</script>
+</html>
+		
